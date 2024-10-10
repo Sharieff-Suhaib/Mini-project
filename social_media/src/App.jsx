@@ -1,10 +1,16 @@
 import Login from "./components/Login"
+import axios from "axios";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 function App(){
+    
     return(
-        <div>
-            <h1>Hello! This is react</h1>
-            <Login/>
-        </div>
+        <Router>
+        <Routes>
+           
+            <Route path="/login" element={<Login />} />
+            
+        </Routes>  
+    </Router>
     );
 }
 export default App;
