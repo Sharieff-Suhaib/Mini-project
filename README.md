@@ -1,2 +1,1 @@
-# Mini-project
 DBMS project
