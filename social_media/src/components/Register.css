@@ -1,8 +1,12 @@
-body{
-    background-image: url("../images/login.jpg");
+.login-container{
+    background-image: url("../images/register.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
     position: relative;
 }
 .login-box {
@@ -10,5 +14,4 @@ body{
     height: auto;
     max-width: 100%;
     backdrop-filter: blur(10px); 
-    margin-left: 600px;
   }

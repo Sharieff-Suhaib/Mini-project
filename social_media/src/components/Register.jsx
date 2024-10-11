@@ -1,9 +1,15 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Register.css'; 
 function Register(){
+    const navigate = useNavigate(); 
+    const handleClick = ()=>{
+        navigate("/login");
+    };
     return (
+    <div className="login-container">
     <div className="login-box">
-        <div class="mt-32  flex items-center justify-center [&amp;>div]:w-full">
+        <div class="flex items-center justify-center [&amp;>div]:w-full">
             <div class="rounded-xl border bg-card text-card-foreground shadow">
                 <div class="flex flex-col p-6 space-y-1">
                     <h3 class="font-semibold tracking-tight text-2xl text-white">Create an account</h3>
@@ -43,10 +49,11 @@ function Register(){
                             <span class="text-white bg-background px-2 text-muted-foreground">Already have an account?</span>
                 </div>
                 <div class="flex items-center p-6 pt-0">
-                    <button class="text-white inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 w-full">Login</button>
+                    <button onClick={handleClick} class="text-white inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 w-full">Login</button>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     )
 }
