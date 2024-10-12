@@ -7,8 +7,8 @@ function Register(){
         navigate("/login");
     };
     return (
-    <div className="login-container">
-    <div className="login-box">
+    <div className="register-container">
+    <div className="register-box">
         <div class="flex items-center justify-center [&amp;>div]:w-full">
             <div class="rounded-xl border bg-card text-card-foreground shadow">
                 <div class="flex flex-col p-6 space-y-1">

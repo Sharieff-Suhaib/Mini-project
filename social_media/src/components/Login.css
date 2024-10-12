@@ -1,0 +1,11 @@
+.login-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.login-box{
+    width: 300px; 
+    height: auto;
+    max-width: 100%;
+}
