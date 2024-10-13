@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import { loginUser } from '../services/api';
 import "./Login.css"
 function Login(){
+    const [email,setEmail] = useState("");
+    const [password,setPassword] = useState("");
+    const handleSubmit = async (e) =>{
+        
+    }
     return(
         <div className="login-container">
             <div className="login-box">
