@@ -7,7 +7,7 @@ const api = axios.create({
 export const registerUser = (data) => api.post('/register', data);
 export const loginUser = async (email, password) => {
   try {
-      const response = await fetch(`${API_URL}/login`, {
+      const response = await fetch(`http://localhost:5000/api/auth/login`, {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',

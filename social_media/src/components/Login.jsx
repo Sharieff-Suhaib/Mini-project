@@ -1,24 +1,33 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../services/api';
 import "./Login.css"
 function Login(){
+    const navigate = useNavigate();
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const handleSubmit = async (e) =>{
-        
+        e.preventDefault();
+        try{
+            const result = await loginUser(email,password);
+            console.log(result);
+            navigate("/home");
+        }catch(error){
+            console.error("Login failed",error);
+        }
     }
     return(
         <div className="login-container">
             <div className="login-box">
-            <form className="">
+            <form className="" onClick={handleSubmit}>
                 <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
                 <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"/>
+                    <input onChange={(e)=>setEmail(e.target.value)} value={email} type="email" class="form-control" id="floatingInput" placeholder="name@example.com"/>
                     <label for="floatingInput">Email address</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password"/>
+                    <input onChange={(e) => setPassword(e.target.value)}  type="password" class="form-control" id="floatingPassword" placeholder="Password"/>
                     <label for="floatingPassword">Password</label>
                 </div>
 

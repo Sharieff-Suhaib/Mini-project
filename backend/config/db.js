@@ -7,5 +7,7 @@ const pool = new Pool({
   password: 'Admin123',
   port: 1710,
 });
-
+pool.connect()
+  .then(() => console.log('Database connected using pg Pool...'))
+  .catch((err) => console.log('Connection error: ' + err));
 module.exports = pool;
