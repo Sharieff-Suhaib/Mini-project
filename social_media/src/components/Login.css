@@ -1,4 +1,8 @@
 .login-container{
+    background-image: url("../images/register.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,4 +12,5 @@
     width: 300px; 
     height: auto;
     max-width: 100%;
+    backdrop-filter: blur(5px); 
 }

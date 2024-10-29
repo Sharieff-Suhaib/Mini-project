@@ -11,6 +11,8 @@ function Login(){
         try{
             const result = await loginUser(email,password);
             console.log(result);
+            console.log(result.token);
+            localStorage.setItem('token', result.token);
             navigate("/home");
         }catch(error){
             console.error("Login failed",error);
@@ -20,7 +22,7 @@ function Login(){
         <div className="login-container">
             <div className="login-box">
             <form className="" onClick={handleSubmit}>
-                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+                <h1 class="text-stone-50 h3 mb-3 fw-normal">Please sign in</h1>
 
                 <div class="form-floating">
                     <input onChange={(e)=>setEmail(e.target.value)} value={email} type="email" class="form-control" id="floatingInput" placeholder="name@example.com"/>
