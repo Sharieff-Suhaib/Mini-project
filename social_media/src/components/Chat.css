@@ -1,0 +1,29 @@
+.chat {
+    padding: 20px;
+}
+
+.chat h2 {
+    margin-bottom: 10px;
+}
+
+.chat input {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: calc(100% - 22px); /* Adjust width to fit padding */
+}
+
+.chat button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.chat button:hover {
+    background-color: #0056b3;
+}
+
+.chat .messages {
+    margin-top: 20px;
+}
