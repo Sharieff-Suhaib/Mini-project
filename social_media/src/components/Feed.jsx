@@ -4,6 +4,7 @@ import './Feed.css';
 import { getPosts } from '../services/api';
 import { jwtDecode } from 'jwt-decode';
 import axios from "axios";
+import { Navigate, useNavigate } from 'react-router-dom';
 const getUserIdFromToken = () => {
   const token = localStorage.getItem('token');
   if (!token) return null;
@@ -23,17 +24,9 @@ function Feed() {
   const [caption,setCaption] = useState("");
   const [file,setFile] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+ const Navigate=useNavigate()
 
-  const fetchPosts = async () => {
-    try{
-        const data = await getPosts();
-        console.log(data);
-        setPosts(data.posts);
-    }
-    catch(error){
-        console.log(error.message);
-    }
-  }
+
   const handleSubmit = async (e) =>{
     e.preventDefault();
         if (!caption || !file) {
@@ -53,10 +46,10 @@ function Feed() {
           });
           console.log("Post created successfully",response.data);
           alert("Post created successfully");
+          Navigate("/home");
           setCaption("");
           setFile(null);
           document.getElementById("file-upload").value = null;
-          fetchPosts();
         }
         catch(error){
           console.error("Error creating posts ",error);
@@ -72,9 +65,7 @@ function Feed() {
   const handleCaptionChange = async (e) =>{
     setCaption(e.target.value);
   }
-  useEffect(() => {
-    fetchPosts();
-  }, []);
+ 
 
   return (
     <div>
@@ -97,11 +88,7 @@ function Feed() {
         </div>
 
 
-        <div className="feed">
-        {posts.map(post => (
-            <Post key={post.id} post={post} />
-        ))}
-        </div>
+       
     </div>
   );
 }
