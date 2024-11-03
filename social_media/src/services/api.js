@@ -63,6 +63,7 @@ export const loginUser = async (email, password) => {
       });
       
       if (!response.ok) {
+          alert("Invalid username or password");
           throw new Error('Login failed');
       }
       
@@ -73,4 +74,66 @@ export const loginUser = async (email, password) => {
       throw error;
   }
 };
-export default api;
+export const updateProfile = async (formData) => {
+  try {
+    const response = await api.put(`/api/profile/update`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Failed to update profile");
+    throw error;
+  }
+};
+export const sendFriendRequest = async (senderId, receiverId) => {
+  try {
+    const response = await api.post('/api/friends/friend-request', {
+      senderId,
+      receiverId,
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error sending friend request:', error);
+    throw error;
+  }
+};
+export const acceptFriendRequest = async (requestId) => {
+  try {
+    console.log(requestId);
+    const response = await api.post('/api/friends/accept-friend', { requestId });
+    return response.data;
+  } catch (error) {
+    console.error('Error accepting friend request:', error);
+    throw error;
+  }
+};
+
+export const rejectFriendRequest = async (requestId) => {
+  try {
+    const response = await api.post('/api/friends/reject-friend', { requestId });
+    return response.data;
+  } catch (error) {
+    console.error('Error rejecting friend request:', error);
+    throw error;
+  }
+};
+
+export const getPendingRequests = async (userId) => {
+  try {
+    const response = await api.get(`/api/friends/pending-requests/${userId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching pending requests:', error);
+    throw error;
+  }
+};
+
+export const getFriends = async (userId) => {
+  try {
+    const response = await api.get(`/api/friends/${userId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching friends:', error);
+    throw error;
+  }
+};
