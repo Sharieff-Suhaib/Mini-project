@@ -79,3 +79,45 @@ h2 {
 .request-item button:last-of-type:hover {
     background-color: #c82333;
 }
+/* Chat Send Message Styles */
+.send-message {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.send-message input {
+    flex: 1;
+    padding: 12px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.send-message input:focus {
+    border-color: #007bff;
+}
+
+.send-message button {
+    padding: 12px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 25px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+.send-message button:hover {
+    background-color: #0056b3;
+}
+
+.send-message button:active {
+    transform: scale(0.95);
+}

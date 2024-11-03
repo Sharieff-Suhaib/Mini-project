@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Chat.css'; 
+import './Chat.css';
 
 const Chat = () => {
     const [messages, setMessages] = useState([]);
@@ -36,22 +36,30 @@ const Chat = () => {
         fetchMessages();
     }, []);
 
+    const userId = localStorage.getItem('user_id');
+
     return (
         <div className="chat">
             <h2>Chat</h2>
-            <input
-                type="text"
-                placeholder="Enter message"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-            />
-            <button onClick={sendMessage}>Send</button>
             <div className="messages">
                 {messages.map((msg, index) => (
-                    <div key={index}>
-                        <strong>{msg.sender_id}:</strong> {msg.content}
+                    <div
+                        key={index}
+                        className={`message ${msg.sender_id === userId ? 'sent' : 'received'}`}
+                    >
+                        <strong>{msg.sender_id === userId ? 'You' : msg.sender_id}:</strong> {msg.content}
                     </div>
                 ))}
+            </div>
+            <div className="message-input-container">
+                <input
+                    className="message-input"
+                    type="text"
+                    placeholder="Type a message"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                />
+                <button className="send-button" onClick={sendMessage}>Send</button>
             </div>
         </div>
     );

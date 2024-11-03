@@ -3,35 +3,35 @@ import axios from 'axios';
 const api = axios.create({
   baseURL: 'http://localhost:5000',
 });
-export const getConversations = async (userId) => {
-  try {
-    const response = await api.get(`/api/conversations/user/${userId}`);
-    return response.data;
-  } catch (error) {
-    console.error("Failed to get conversations");
-    throw error;
-  }
-};
+// export const getConversations = async (userId) => {
+//   try {
+//     const response = await api.get(`/api/conversations/user/${userId}`);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Failed to get conversations");
+//     throw error;
+//   }
+// };
 
-export const getConversation = async (userId1, userId2) => {
-  try {
-    const response = await api.get(`/api/conversations/${userId1}/${userId2}`);
-    return response.data;
-  } catch (error) {
-    console.error("Failed to get conversation");
-    throw error;
-  }
-};
+// export const getConversation = async (userId1, userId2) => {
+//   try {
+//     const response = await api.get(`/api/conversations/${userId1}/${userId2}`);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Failed to get conversation");
+//     throw error;
+//   }
+// };
 
-export const sendMessage = async (messageData) => {
-  try {
-    const response = await api.post(`/api/conversations/send`, messageData);
-    return response.data;
-  } catch (error) {
-    console.error("Failed to send message");
-    throw error;
-  }
-};
+// export const sendMessage = async (messageData) => {
+//   try {
+//     const response = await api.post(`/api/conversations/send`, messageData);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Failed to send message");
+//     throw error;
+//   }
+// };
 export const getPosts = async () =>{
     try{
         const response = await api.get("/api/posts/posts");
@@ -63,7 +63,6 @@ export const loginUser = async (email, password) => {
       });
       
       if (!response.ok) {
-          alert("Invalid username or password");
           throw new Error('Login failed');
       }
       
@@ -134,6 +133,28 @@ export const getFriends = async (userId) => {
     return response.data;
   } catch (error) {
     console.error('Error fetching friends:', error);
+    throw error;
+  }
+};
+export const getMessages = async (userId, friendId) => {
+  try {
+    const response = await api.get(`/api/messages/${userId}/${friendId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching messages:', error);
+    throw error;
+  }
+};
+export const sendMessage = async (senderId, receiverId, messageText) => {
+  try {
+    const response = await api.post('/api/messages/send', {
+      senderId,
+      receiverId,
+      messageText,
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error sending message:', error);
     throw error;
   }
 };
