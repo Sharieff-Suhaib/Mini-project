@@ -53,30 +53,30 @@ function Home(){
 
     console.log(userId);
     return(
-      <div >
-        <div >
+      <div className="home">
+        <div className="navbar">
             <Navbar/>
-            </div>
-            <div className="fullpage">
-            <div className="side">
-          <Sidebar/>
-          </div>
+        </div>
+              <div className="fullpage">
+                <div className="side">
+                  <Sidebar/>
+                </div>
                 <div className="post">
-                <div className="newpost">
-          <Link to="/post2">
-                <button>Go to New Post</button>
-            </Link>
-            </div>
-               {posts.map(post => (
-               <Post key={post.id} post={post} />
-        ))}
-        </div>
-            </div>
+                  <div className="newpost">
+                    <Link to="/post2">
+                      <button>Go to New Post</button>
+                    </Link>
+                  </div>
+                  {posts.map(post => (
+                    <Post key={post.id} post={post} />
+                  ))}
+                </div>
+              </div>
                   
-       <div className="activities">
-        <Activities/>
-        </div>
-        </div>
+              <div className="activities">
+                <Activities/>
+              </div>
+      </div>
     );
 }
 export default Home;

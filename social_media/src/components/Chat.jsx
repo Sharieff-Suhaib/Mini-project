@@ -6,7 +6,6 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('');
     const [receiverId, setReceiverId] = useState('');
-
     const fetchMessages = async () => {
         const userId = localStorage.getItem('user_id');
         try {
