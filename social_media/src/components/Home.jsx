@@ -61,16 +61,16 @@ function Home(){
         {posts.map(post => (
             <Post key={post.id} post={post} />
         ))}
-        </div>
+        {/* </div>
                 <Messages loggedInUserId={userId}/>
-       <div>
+       <div> */}
        <div>
             <Link to="/post2">
                 <button>Go to New Post</button>
             </Link>
         </div>
             </div>
-            <Activities/>
+            {/* <Activities/> */}
         </div></div>
     );
 }
