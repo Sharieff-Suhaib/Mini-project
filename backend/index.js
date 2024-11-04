@@ -15,7 +15,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/uploads', express.static('uploads'));
-app.use('/api/conversations', messageRoutes);
+app.use('/api/messages', messageRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/friends",friendRoutes);
 
