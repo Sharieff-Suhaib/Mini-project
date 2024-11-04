@@ -11,6 +11,8 @@ import { Link } from "react-router-dom";
 import { getPosts } from "../services/api";
 import Post from "./Post";
 import { useNavigate } from "react-router-dom";
+import "./Home.css";
+import "./Feed.css";
 
 const getUserIdFromToken = () => {
   const token = localStorage.getItem('token');
@@ -51,27 +53,30 @@ function Home(){
 
     console.log(userId);
     return(
-        <div>
+      <div >
+        <div >
             <Navbar/>
-            
-            <div className="grid grid-cols-3 gap-1 col-end-1">
-                
-                <Sidebar/>
-                <div className="feed">
-        {posts.map(post => (
-            <Post key={post.id} post={post} />
-        ))}
-        {/* </div>
-                <Messages loggedInUserId={userId}/>
-       <div> */}
-       <div>
-            <Link to="/post2">
+            </div>
+            <div className="fullpage">
+            <div className="side">
+          <Sidebar/>
+          </div>
+                <div className="post">
+                <div className="newpost">
+          <Link to="/post2">
                 <button>Go to New Post</button>
             </Link>
+            </div>
+               {posts.map(post => (
+               <Post key={post.id} post={post} />
+        ))}
         </div>
             </div>
-            {/* <Activities/> */}
-        </div></div>
+                  
+       <div className="activities">
+        <Activities/>
+        </div>
+        </div>
     );
 }
 export default Home;
