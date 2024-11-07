@@ -1,25 +1,25 @@
-const Comment = require("../models/comments");
-const formComment = async (req,res) => {
-    const { userId, postId, content } = req.body;
-    try{
-        const comment = await Comment.createComment(userId, postId, content);
-        res.json({comment});
-    }
-    catch(err){
-        res.status(500).json({ error: "Unable to create comment" });
-    }
-}
+const { createComment, findByPostId } = require('../models/comments');
 
-const getComments = async (req,res) => {
-    const { postId } = req.params;
+const getCommentsByPostId = async (req, res) => {
     try {
-        const result = await Comment.createComment(postId);
-        res.json({comment});
+        const comments = await findByPostId(req.params.postId);
+        res.json(comments);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch comments' });
     }
-    catch(err){
-        res.status(500).json({error: "Unable to fetch comments"});
+};
+
+const addComment = async (req, res) => {
+    try {
+        const { userId, postId, commentText } = req.body;
+
+        const newComment = await createComment(userId, postId, commentText);
+        res.json(newComment);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to add comment' });
     }
-}
+};
 module.exports = {
-    formComment,getComments
-}
+    addComment,
+    getCommentsByPostId
+  };

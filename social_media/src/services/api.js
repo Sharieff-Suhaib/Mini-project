@@ -158,3 +158,21 @@ export const sendMessage = async (senderId, receiverId, messageText) => {
     throw error;
   }
 };
+export const fetchCommentsByPostId = async (postId) => {
+  try {
+    const response = await api.get(`/api/comments/${postId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Failed to fetch comments:", error);
+    throw error;
+  }
+};
+export const addComment = async (userId,postId, commentText) => {
+  try {
+    const response = await api.post('/api/comments/comments', { userId, postId, commentText });
+    return response.data;
+  } catch (error) {
+    console.error("Failed to add comment:", error);
+    throw error;
+  }
+};

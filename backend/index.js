@@ -5,6 +5,7 @@ const postRoutes = require('./routes/postRoutes');
 const messageRoutes = require('./routes/messageRoutes'); 
 const profileRoutes = require('./routes/profileRoutes');
 const friendRoutes = require('./routes/friendRoutes');
+const commentRoutes = require('./routes/commentRoutes');
 const app = express();
 
 app.use(cors({
@@ -18,7 +19,7 @@ app.use('/uploads', express.static('uploads'));
 app.use('/api/messages', messageRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/friends",friendRoutes);
-
+app.use("/api/comments",commentRoutes);
 const PORT = 5000;
 
 app.listen(PORT, () => {

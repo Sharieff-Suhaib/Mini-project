@@ -10,6 +10,7 @@ import { jwtDecode } from 'jwt-decode';
 import { Link } from "react-router-dom";
 import { getPosts } from "../services/api";
 import Post from "./Post";
+import Comment from './Comment';
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import "./Feed.css";
@@ -22,7 +23,6 @@ const getUserIdFromToken = () => {
     const decodedToken = jwtDecode(token);
     console.log(decodedToken);
     return decodedToken.user_id; 
-    localStorage.setItem('user_id', decodedToken.user_id);
   } catch (error) {
     console.error("Failed to decode token", error);
     return null;
@@ -64,11 +64,14 @@ function Home(){
                 <div className="post">
                   <div className="newpost">
                     <Link to="/post2">
-                      <button>Go to New Post</button>
+                      <button>Create a new post</button>
                     </Link>
                   </div>
                   {posts.map(post => (
+                    <div>
                     <Post key={post.id} post={post} />
+                    <Comment postId={post.id}  />
+                    </div>
                   ))}
                 </div>
               </div>
