@@ -100,5 +100,10 @@ button:hover:not(:disabled) {
 .feed{
   padding-top: 20%;
   
-
+}
+img{
+  height: auto;
+  width: 1000px;
+  border-radius: 2%;
+ margin-bottom: 2%;
 }
