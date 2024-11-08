@@ -19,6 +19,7 @@ const getUserIdFromToken = () => {
   }
 };
 function Feed() {
+  const [preview,setPreview]=useState("")
   const userId = getUserIdFromToken();
   const [posts, setPosts] = useState([]);
   const [caption,setCaption] = useState("");
@@ -60,7 +61,15 @@ function Feed() {
         }
   };
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    if(e.target.files && e.target.files[0])
+    {
+      setFile(e.target.files[0]);
+      const reader=new  FileReader();
+      reader.onload=(e)=>{
+        setPreview(e.target.result)
+      }
+      reader.readAsDataURL(e.target.files[0])
+    }
   }
   const handleCaptionChange = async (e) =>{
     setCaption(e.target.value);
@@ -77,6 +86,7 @@ function Feed() {
             placeholder="What's on your mind?"
             onChange={handleCaptionChange}
             ></textarea>
+            {preview && <img src={preview} alt={preview}/>}
             <label htmlFor="file-upload" className="file-upload-label">
                 <span className="file-upload-text">Choose File</span>
                 <input onChange={handleFileChange} id="file-upload" className="file-upload-input" type="file" />
