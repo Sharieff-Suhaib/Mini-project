@@ -176,3 +176,21 @@ export const addComment = async (userId,postId, commentText) => {
     throw error;
   }
 };
+export const toggleLike = async (userId,postId) => {
+  try {
+    const response = await api.post('/api/likes/toggle', { userId,postId });
+    return response.data;
+  } catch (error) {
+    console.error("Failed to toggle like:", error);
+    throw error;
+  }
+};
+export const getLikesCount = async (postId) => {
+  try {
+    const response = await api.get(`/api/likes/count/${postId}`);
+    return response.data.count;
+  } catch (error) {
+    console.error("Failed to fetch likes count:", error);
+    throw error;
+  }
+};

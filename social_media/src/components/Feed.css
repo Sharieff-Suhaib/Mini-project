@@ -60,6 +60,14 @@ textarea:focus {
   background-color: #434190;
 }
 
+img {
+  height: auto;
+  max-height: 500px;
+  width: 100%;
+  border-radius: 2%;
+  margin-bottom: 2%;
+  object-fit: contain; 
+}
 .file-upload-input {
   display: none;
 }

@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { getPosts } from "../services/api";
 import Post from "./Post";
 import Comment from './Comment';
+import LikeButton from './LikeButton';
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import "./Feed.css";
@@ -30,12 +31,8 @@ const getUserIdFromToken = () => {
 };
 
 function Home(){
-  const navigate = useNavigate();
   const userId = getUserIdFromToken();
   const [posts, setPosts] = useState([]);
-  const [caption,setCaption] = useState("");
-  const [file,setFile] = useState(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const fetchPosts = async () => {
     try{
@@ -68,9 +65,12 @@ function Home(){
                     </Link>
                   </div>
                   {posts.map(post => (
-                    <div>
+                    <div className="main-post-content">
                     <Post key={post.id} post={post} />
-                    <Comment postId={post.id}  />
+                    <div className="post-actions">
+                      <LikeButton postId={post.id} />
+                      <Comment postId={post.id}  />
+                    </div>
                     </div>
                   ))}
                 </div>
