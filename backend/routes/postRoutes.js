@@ -1,6 +1,6 @@
 const express = require("express");
 const multer = require('multer');
-const { formPost, getPosts } = require("../controllers/postController");
+const { formPost, getPosts,deletePost } = require("../controllers/postController");
 const path = require('path');
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -16,5 +16,6 @@ const router = express.Router();
 
 router.post("/create",upload.single('image'), formPost);
 router.get("/posts", getPosts);
+router.delete('/:postId', deletePost);
 
 module.exports = router;

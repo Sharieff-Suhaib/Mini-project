@@ -194,3 +194,12 @@ export const getLikesCount = async (postId) => {
     throw error;
   }
 };
+export const deletePost = async (postId) => {
+  try {
+    const response = await api.delete(`/api/posts/${postId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Failed to delete post:", error);
+    throw error;
+  }
+};

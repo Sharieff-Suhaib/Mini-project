@@ -107,3 +107,28 @@
   color: #333;
   font-family: 'Roboto', sans-serif;
 }
+.delete-button {
+  background-color: #ff4d4f; 
+  color: #fff; 
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.delete-button:hover {
+  background-color: #d9363e !important;
+  transform: scale(1.05); 
+}
+
+.delete-button:active {
+  transform: scale(0.95);
+}
+
+.delete-button:focus {
+  outline: 2px solid #ff7875;
+}
+

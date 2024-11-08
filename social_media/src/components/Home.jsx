@@ -22,7 +22,6 @@ const getUserIdFromToken = () => {
 
   try {
     const decodedToken = jwtDecode(token);
-    console.log(decodedToken);
     return decodedToken.user_id; 
   } catch (error) {
     console.error("Failed to decode token", error);
@@ -37,18 +36,19 @@ function Home(){
   const fetchPosts = async () => {
     try{
         const data = await getPosts();
-        console.log(data);
         setPosts(data.posts);
     }
     catch(error){
         console.log(error.message);
     }
   }
+  const handleDelete = (postId) => {
+    setPosts(posts.filter(post => post.id !== postId));
+  };
   useEffect(() => {
     fetchPosts();
   }, []);
 
-    console.log(userId);
     return(
       <div className="home">
         <div className="navbar">
@@ -66,7 +66,7 @@ function Home(){
                   </div>
                   {posts.map(post => (
                     <div className="main-post-content">
-                    <Post key={post.id} post={post} />
+                    <Post key={post.id} post={post} userId={userId} onDelete={handleDelete}/>
                     <div className="post-actions">
                       <LikeButton postId={post.id} />
                       <Comment postId={post.id}  />

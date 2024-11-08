@@ -16,6 +16,13 @@ const findAllPosts = async () => {
     );
     return result.rows;
 };
+const deletePost = async (postId) => {
+    const result = await pool.query(
+        "DELETE FROM posts WHERE id = $1 RETURNING *",
+        [postId]
+    );
+    return result.rows[0];
+};
 module.exports = {
-    createPost,findAllPosts
+    createPost,findAllPosts,deletePost
 };
