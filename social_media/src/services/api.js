@@ -195,6 +195,7 @@ export const getLikesCount = async (postId) => {
   }
 };
 export const deletePost = async (postId) => {
+  console.log(postId);
   try {
     const response = await api.delete(`/api/posts/${postId}`);
     return response.data;
