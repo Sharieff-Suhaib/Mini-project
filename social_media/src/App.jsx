@@ -6,6 +6,7 @@ import Post2 from "./components/post2";
 import Friend from "./components/Friend"
 import Chat from "./components/Chat"
 import Profile from "./components/Profile"
+import AdminPage from "./components/Admin";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 function App(){
     return(
@@ -18,7 +19,7 @@ function App(){
             <Route path="/profile" element={<Profile/>}/>
             <Route path="/friends" element={<Friend/>}/>
             <Route path="/chat" element={<Chat/>}/>
-
+            <Route path="/admin" element={<AdminPage/>}/>
         </Routes>  
     </Router>
     );

@@ -11,14 +11,14 @@ const Friend = () => {
   const [selectedFriend, setSelectedFriend] = useState(null);
   const [messages, setMessages] = useState([]);
   const [messageText, setMessageText] = useState('');
-
+  console.log(pendingRequests);
   const getUserIdFromToken = () => {
     const token = localStorage.getItem('token');
     if (!token) return null;
   
     try {
       const decodedToken = jwtDecode(token);
-      console.log(decodedToken);
+      //console.log(decodedToken);
       return decodedToken.user_id; 
       //localStorage.setItem('user_id', decodedToken.user_id);
     } catch (error) {
@@ -59,6 +59,7 @@ const Friend = () => {
 
   const handleAcceptFriendRequest = async (requestId) => {
     try {
+      console.log(requestId);
       await acceptFriendRequest(requestId);
       fetchPendingRequests();
       fetchFriends();
@@ -86,7 +87,7 @@ const Friend = () => {
       console.error('Error fetching messages:', error);
     }
   };
-
+console.log(pendingRequests)
   const handleSendMessage = async () => {
     const userId = getUserIdFromToken();
     try {
@@ -127,10 +128,10 @@ const Friend = () => {
       <h2>Pending Friend Requests</h2>
       <ul className="pending-requests">
         {pendingRequests.map((request) => (
-          <li key={request.id} className="request-item">
+          <li key={request.receiver_id} className="request-item">
             {request.sender}
-            <button onClick={() => handleAcceptFriendRequest(request.id)}>Accept</button>
-            <button onClick={() => handleRejectFriendRequest(request.id)}>Reject</button>
+            <button onClick={() => handleAcceptFriendRequest(request.receiver_id)}>Accept</button>
+            <button onClick={() => handleRejectFriendRequest(request.receiver_id)}>Reject</button>
           </li>
         ))}
       </ul>

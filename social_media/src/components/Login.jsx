@@ -1,22 +1,41 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../services/api';
+import { loginUser,loginAdmin } from '../services/api';
 import "./Login.css"
 function Login(){
     const navigate = useNavigate();
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const handleSubmit = async (e) =>{
+        const adminEmail = "admin@gmail.com";
+        const adminPassword = "Admin123";
+        console.log(email);
+        console.log(password);
         e.preventDefault();
-        try{
-            const result = await loginUser(email,password);
-            console.log(result);
-            console.log(result.token);
-            localStorage.setItem('token', result.token);
-            navigate("/home");
-        }catch(error){
-            console.error("Login failed",error);
+        if (email === adminEmail && password === adminPassword){
+            try{
+                const response = await loginAdmin(email,password);
+                console.log(response);
+                if(response.message === 'Admin login successful'){
+                    navigate("/admin");
+                }
+            }
+            catch(error){
+                console.error("Login failed",error);
+            }  
         }
+        else{
+            try{
+                const result = await loginUser(email,password);
+                console.log(result);
+                console.log(result.token);
+                localStorage.setItem('token', result.token);
+                navigate("/home");
+            }catch(error){
+                console.error("Login failed",error);
+            }
+        }
+        
     }
     return(
         <div className="login-container">

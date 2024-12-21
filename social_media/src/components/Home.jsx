@@ -9,6 +9,7 @@ import Activities from "./Activities";
 import { jwtDecode } from 'jwt-decode';
 import { Link } from "react-router-dom";
 import { getPosts } from "../services/api";
+import { getFriendPosts } from "../services/api";
 import Post from "./Post";
 import Comment from './Comment';
 import LikeButton from './LikeButton';
@@ -32,11 +33,13 @@ const getUserIdFromToken = () => {
 function Home(){
   const userId = getUserIdFromToken();
   const [posts, setPosts] = useState([]);
-
+  console.log(posts);
   const fetchPosts = async () => {
     try{
-        const data = await getPosts();
-        setPosts(data.posts);
+      console.log(userId);
+        const data = await getFriendPosts(userId);
+        //console.log(data);
+        setPosts(data);
     }
     catch(error){
         console.log(error.message);
@@ -77,7 +80,7 @@ function Home(){
               </div>
                   
               <div className="activities">
-                <Activities/>
+               
               </div>
       </div>
     );

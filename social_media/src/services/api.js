@@ -73,6 +73,27 @@ export const loginUser = async (email, password) => {
       throw error;
   }
 };
+export const loginAdmin = async (email, password) => {
+  try {
+    const response = await fetch(`http://localhost:5000/api/auth/admin-login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Admin login failed');
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Admin login error:", error);
+    throw error;
+  }
+};
 export const updateProfile = async (formData) => {
   try {
     const response = await api.put(`/api/profile/update`, formData, {
@@ -155,6 +176,17 @@ export const sendMessage = async (senderId, receiverId, messageText) => {
     return response.data;
   } catch (error) {
     console.error('Error sending message:', error);
+    throw error;
+  }
+};
+export const getFriendPosts = async (userId) => {
+  try {
+    console.log("Hiiii");
+    const response = await api.get(`/api/friends/friend-posts/${userId}`);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching friend posts:", error);
     throw error;
   }
 };
