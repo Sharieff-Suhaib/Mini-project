@@ -7,7 +7,7 @@ const profileRoutes = require('./routes/profileRoutes');
 const friendRoutes = require('./routes/friendRoutes');
 const commentRoutes = require('./routes/commentRoutes');
 const likeRoutes = require('./routes/likeRoutes');
-
+const adminRoutes = require('./routes/adminRoutes');
 const app = express();
 
 app.use(cors({
@@ -23,7 +23,7 @@ app.use("/api/profile", profileRoutes);
 app.use("/api/friends",friendRoutes);
 app.use("/api/comments",commentRoutes);
 app.use("/api/likes",likeRoutes);
-
+app.use("/api/admin", adminRoutes);
 const PORT = 5000;
 
 app.listen(PORT, () => {

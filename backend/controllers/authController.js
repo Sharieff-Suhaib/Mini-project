@@ -41,7 +41,19 @@ const loginUser = async (req, res) => {
   }
   
 };
+const loginAdmin = async (req, res) => {
+  const { email, password } = req.body;
+
+  const adminEmail = 'admin@gmail.com';
+  const adminPassword = 'Admin123';
+
+  if (email === adminEmail && password === adminPassword) {
+    return res.status(200).json({ message: 'Admin login successful' });
+  } else {
+    return res.status(401).json({ message: 'Invalid admin email or password' });
+  }
+};
 
 module.exports = {
-  registerUser,loginUser,
+  registerUser,loginUser,loginAdmin
 };

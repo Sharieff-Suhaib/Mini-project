@@ -51,6 +51,16 @@ const listFriendRequests = async (req, res) => {
     res.status(500).json({ error: "Unable to fetch friend requests" });
   }
 };
+const getFriendPosts = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    console.log("Hello");
+    const posts = await Friend.getFriendPosts(userId);
+    res.status(200).json(posts);
+  } catch (error) {
+    res.status(500).json({ error: "Unable to fetch friend posts" });
+  }
+};
 
 module.exports = {
   sendFriendRequest,
@@ -58,4 +68,5 @@ module.exports = {
   rejectFriendRequest,
   listFriends,
   listFriendRequests,
+  getFriendPosts
 };
